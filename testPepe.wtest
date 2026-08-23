@@ -1,0 +1,10 @@
+import pepe.*
+
+describe "Sueldo Pepe" {
+	
+	test "Test 1" {
+		//TODO: Implementame
+	}
+
+	
+}
