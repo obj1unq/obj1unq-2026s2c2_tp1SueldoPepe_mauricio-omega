@@ -1,10 +1,73 @@
 import pepe.*
 
-describe "Sueldo Pepe" {
+	test "Caso de prueba 1 del enunciado de Pepe" {
+		/*Si pepe es cadete, tiene el bono resultado de monto fijo, 
+		y bono presentismo normal. Simular que faltó 3 días. Debería tener $20800 de sueldo.*/
+		pepe.categoria(cadete)
+		
+		pepe.bonoDeResultado(bonoResultadoMontoFijo)
+		
+		pepe.diasFaltados(3)
+		assert.equals(3, pepe.diasFaltados())
+		
+		assert.equals(20800, pepe.sueldo())
+	}	
+test "Caso de prueba 2 del enunciado de Pepe" {
+		/*Si pepe es gerente, tiene el bono resultado por porcentaje, y bono de presentismo nulo. 
+		El sueldo debe dar $16500.*/
+		pepe.categoria(gerente)
+		
+		pepe.bonoDeResultado(bonoResultadoPorcentaje)
+		pepe.bonoDePresentismo(bonoPresentismoNulo)
+		
+		assert.equals(16500, pepe.sueldo())
+	}		
 	
-	test "Test 1" {
-		//TODO: Implementame
-	}
+test "Caso de prueba 3 del enunciado de Pepe" {
+		/*Si pepe es cadete, tiene bono de resultados por porcentaje, bono por presentismo normal, nunca faltó. 
+		Debería tener $24000 de sueldo.*/
+		pepe.categoria(cadete)
+		
+		pepe.bonoDeResultado(bonoResultadoPorcentaje)
+		pepe.bonoDePresentismo(bonoPresentismoNormal)
+		pepe.diasFaltados(0)
+		
+		assert.equals(24000, pepe.sueldo())
+	}	
 
+test "Caso de prueba 4 del enunciado de Pepe" {
+		/*Si pepe es cadete, tiene bono de resultados por porcentaje, bono por presentismo normal, 
+		falto 1 día. Debería tener $23000 de sueldo.*/
+		pepe.categoria(cadete)
+		
+		pepe.bonoDeResultado(bonoResultadoPorcentaje)
+		pepe.bonoDePresentismo(bonoPresentismoNormal)
+		pepe.diasFaltados(1)
+		
+		assert.equals(23000, pepe.sueldo())
+	}	
 	
+test "Caso de prueba 1 del enunciado de la segunda parte de Pepe"{
+	//- La categoría base de _medio tiempo_ es _cadete_.
+	//- Pepe tiene categoría medio tiempo (o sea, es cadete y trabaja medio tiempo), tiene bono por 
+	//resultados de porcentaje, y bono por presentismo demagógico. Hacer que falte una vez.
+	medioTiempo.categoriaBase(cadete)
+	pepe.categoria(medioTiempo)
+	pepe.bonoDeResultado(bonoResultadoPorcentaje)
+	pepe.bonoDePresentismo(bonoPresentismoDemagogico)
+	pepe.diasFaltados(1)
+	
+	//- Roque tiene bono por resultados monto fijo. 
+	roque.bonoDeResultado(bonoResultadoMontoFijo)
+	
+	//- Ernesto tiene como compañero a Pepe, y bono por presentismo de ajuste.
+	ernesto.compañero(pepe)
+	ernesto.bonoDePresentismo(bonoPresentismoAjuste)
+	
+	//Verificar que el sueldo de Pepe es 11500, el de Roque es 37800, y el de Ernesto es 10100.
+	assert.equals(11500, pepe.sueldo())
+	assert.equals(37800, roque.sueldo())
+	assert.equals(10100, ernesto.sueldo())
+	//Dibujar el diagrama de referencias que queda al final de este test. Recordar que deben 
+	//incluirse los objetos definidos por nosotros, _y también_ los números y booleanos.
 }
