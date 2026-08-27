@@ -107,6 +107,32 @@ Agregar dos personas más, según lo que se detalla a continuación.
   - el **tipo** de los objetos polimórficos
   - los mensajes que componen ese tipo
   - los **emisores** de los mensajes polimórficos
-    
-- Dibujar un diagrama estático donde se vea la relación entre los objetos y los tipos polimórficos
+
+**Tipo `Categoria`** — el mensaje que define este tipo es `sueldoNeto()`. Lo implementan `cadete`,
+`gerente` y `vendedor`. Los emisores son `pepe` y `moria`, a través de su atributo `categoria`. un caso especia 
+es el objeto `medioTiempo` que implementa el tipo y a la vez es emisor, ya que internamente guarda su propia categoría base 
+y le envía `sueldoNeto()` para calcular la mitad.
+
+**Tipo `BonoDeResultado`** — su mensaje es `calcularBono(empleado)`. Lo implementan
+`bonoResultadoPorcentaje`, `bonoResultadoMontoFijo` y `bonoResultadoNulo`. Los emisores son `pepe`,
+`moria` y `roque`, cada uno a través de su atributo `bonoDeResultado`, enviando `calcularBono(self)` para
+auto-referencia.
+
+**Tipo `BonoDePresentismo`** — su mensaje es `calcularBono(empleado)`. Lo implementan `bonoPresentismoNormal`,
+`bonoPresentismoAjuste`, `bonoPresentismoDemagogico` y `bonoPresentismoNulo`, y sus emisores son `pepe`
+y `ernesto`, a través del atributo `bonoDePresentismo`, enviando `calcularBono(self)` para
+auto-referencia.
+
+**Tipo `Empleado`** — su mensaje es `sueldoNetoRecibido()`. Lo implementan `pepe`, `moria`, `roque` y `ernesto`.
+Los emisores son todos los objetos que sean de tipo `BonoDeResultado` y `BonoDePresentismo`, que reciben un
+  `empleado` como parámetro y le consultan `sueldoNetoRecibido()` sin saber si es `pepe`, `moria`, `roque` o `ernesto`.
+  Tambien `ernesto` es un emisor, ya que le manda `sueldoNetoRecibido()` a su atributo `compañero`, pudiendo cambiar de
+  compañero en cualquier momento.
+### Diagrama estático
+
+[![Diagrama de Pepe](./img/DiagramaTerminado1.drawio.svg)](./img/DiagramaTerminado1.drawio.svg)
 - Encontrar (en toda la solución) un mensaje que sea una orden y otro que sea una consulta
+- **Orden (comando):** `medioTiempo.categoriaBase(categoria)` — modifica el estado interno de
+  `medioTiempo` (guarda la categoría base) y no devuelve/retorna nada para quien lo invoca.
+- **Consulta:** `pepe.sueldo()` — calcula y devuelve un valor sin modificar el estado de ningún
+  objeto involucrado.
