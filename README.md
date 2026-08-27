@@ -109,4 +109,5 @@ Agregar dos personas más, según lo que se detalla a continuación.
   - los **emisores** de los mensajes polimórficos
     
 - Dibujar un diagrama estático donde se vea la relación entre los objetos y los tipos polimórficos
+![Diagrama de Pepe](./img/DiagramaTerminado.png)
 - Encontrar (en toda la solución) un mensaje que sea una orden y otro que sea una consulta
