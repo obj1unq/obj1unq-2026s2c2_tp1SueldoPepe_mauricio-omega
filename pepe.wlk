@@ -98,7 +98,7 @@ object moria{
 	
 	method sueldoNetoRecibido() = categoria.sueldoNeto() * self.cantidadDeAumento()
 
-	method 	() = 1.3 
+	method cantidadDeAumento() = 1.3 
 }
 
 //nuevas categorias
